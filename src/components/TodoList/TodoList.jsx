@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './TodoList.module.css';
 
 import { deleteTodo, openModalTodo, setTodoStatus } from 'redux/todoSlice';
-import { useState } from 'react';
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -34,14 +33,14 @@ const TodoList = () => {
   return (
     <table className={styles.table}>
       <tbody>
-        <tr>
+        <tr className={styles.listItem}>
           <th>id</th>
           <th>Title</th>
           <th>Description</th>
           <th>Status</th>
         </tr>
         {todos.map(({ id, title, descr, status }) => (
-          <tr key={id} onClick={onTodoClick}>
+          <tr key={id} onClick={onTodoClick} className={styles.listItem}>
             <td>{id}</td>
             <td>{title}</td>
             <td>{descr}</td>

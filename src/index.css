@@ -13,3 +13,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.onError {
+  border: 2px solid red;
+}
+.errorMsg::after {
+  display: block;
+  content: 'This field is empty';
+  color: red;
+  font-size: 14px;
+}

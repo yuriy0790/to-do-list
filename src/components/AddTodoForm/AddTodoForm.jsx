@@ -34,6 +34,14 @@ export default function AddTodoForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+    if (title === '') {
+      document.querySelector('#title').classList.add('onError');
+      document.querySelector('#label').classList.add('errorMsg');
+
+      return;
+    }
+    document.querySelector('#title').classList.remove('onError');
+    document.querySelector('#label').classList.remove('errorMsg');
     lastId++;
     const todo = {
       id: lastId,
@@ -52,8 +60,10 @@ export default function AddTodoForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label className={styles.label}>
-        Title:
+      <div className={styles.inputsWrap}>
+        <label htmlFor="title" className={styles.label} id="label">
+          Title:
+        </label>
         <input
           className={styles.input}
           placeholder="Enter title"
@@ -61,11 +71,11 @@ export default function AddTodoForm() {
           value={title}
           type="text"
           name="title"
-          required
+          id="title"
         />
-      </label>
-      <label className={styles.label}>
-        Description:
+        <label htmlFor="descr" className={styles.label}>
+          Description:
+        </label>
         <input
           className={styles.input}
           placeholder="Enter description"
@@ -73,9 +83,8 @@ export default function AddTodoForm() {
           value={descr}
           type="text"
           name="descr"
-          required
         />
-      </label>
+      </div>
       <button type="submit" className={styles.gradientButton}>
         Create
       </button>

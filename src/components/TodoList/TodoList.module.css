@@ -1,0 +1,45 @@
+.table {
+  max-width: 70%;
+}
+
+.listItem {
+  height: 26px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: baseline;
+  gap: 20px;
+
+  background-color: white;
+  border: 1px solid black;
+}
+
+.listItem td,
+.listItem th {
+  width: 25%;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.listItem td:nth-child(1),
+.listItem th:nth-child(1) {
+  width: 10%;
+}
+
+.listItem td:nth-child(2),
+.listItem th:nth-child(2) {
+  width: 30%;
+}
+
+.listItem td:nth-child(3),
+.listItem th:nth-child(3) {
+  width: 50%;
+}
+.listItem td:nth-child(4),
+.listItem th:nth-child(4) {
+  width: 10%;
+}
