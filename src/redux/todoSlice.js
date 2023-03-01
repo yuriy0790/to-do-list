@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const todoInitialState = [];
+const todoInitialState = {
+  items: [],
+  fullTodoInfoModal: false,
+};
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -9,14 +12,36 @@ const todoSlice = createSlice({
 
   reducers: {
     addTodo(state, { payload }) {
-      return [...state, payload];
+      state.items = [...state.items, payload];
     },
     deleteTodo(state, { payload }) {
-      return state.filter(el => el.id !== payload);
+      state.items = state.items.filter(el => el.id !== payload);
+    },
+    openModalTodo(state, { payload }) {
+      state.fullTodoInfoModal = { ...payload };
+    },
+    closeModalTodo(state) {
+      state.fullTodoInfoModal = null;
+    },
+    setTodoStatus: (state, { payload }) => {
+      const { id, status } = payload;
+      const todo = state.items.find(todo => todo.id === id);
+      if (todo) {
+        todo.status = status;
+      }
+      if (state.fullTodoInfoModal) {
+        state.fullTodoInfoModal.status = status;
+      }
     },
   },
 });
 
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  openModalTodo,
+  closeModalTodo,
+  setTodoStatus,
+} = todoSlice.actions;
 
 export const todoReducer = todoSlice.reducer;

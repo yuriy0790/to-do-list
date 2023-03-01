@@ -10,7 +10,7 @@ import { addTodo } from 'redux/todoSlice';
 let lastId = 0;
 export default function AddTodoForm() {
   const dispatch = useDispatch();
-  // const todos = useSelector(state => state.todos);
+  // const todos = useSelector(state => state.todos.items);
 
   const [title, setTitle] = useState('');
   const [descr, setDescr] = useState('');
@@ -39,6 +39,7 @@ export default function AddTodoForm() {
       id: lastId,
       title: title,
       descr: descr,
+      status: false,
     };
     dispatch(addTodo(todo));
     reset();
@@ -55,6 +56,7 @@ export default function AddTodoForm() {
         Title:
         <input
           className={styles.input}
+          placeholder="Enter title"
           onChange={handleChange}
           value={title}
           type="text"
@@ -66,6 +68,7 @@ export default function AddTodoForm() {
         Description:
         <input
           className={styles.input}
+          placeholder="Enter description"
           onChange={handleChange}
           value={descr}
           type="text"

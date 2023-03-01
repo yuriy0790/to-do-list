@@ -1,46 +1,63 @@
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './TodoList.module.css';
 
-// import { deleteTodo } from 'redux/todoSlice';
+import { deleteTodo, openModalTodo, setTodoStatus } from 'redux/todoSlice';
+import { useState } from 'react';
 
 const TodoList = () => {
-  // const dispatch = useDispatch();
-  const todos = useSelector(state => state.todos);
+  const dispatch = useDispatch();
+  const todos = useSelector(state => state.todos.items);
 
   // const onDeleteBtnClick = todoId => {
   //   const deletedTodo = todos.find(todo => todo.id === todoId);
 
   //   dispatch(deleteTodo(todoId));
   // };
+  const onTodoClick = event => {
+    if (event.target.type !== 'checkbox') {
+      const clickedTodo = todos.find(
+        el =>
+          Number(el.id) ===
+          Number(event.currentTarget.firstElementChild.textContent)
+      );
+
+      dispatch(openModalTodo(clickedTodo));
+      return;
+    }
+  };
+
+  const handleCheckboxChange = (id, status) => {
+    dispatch(setTodoStatus({ id, status: !status }));
+  };
+
   return (
-    <>
-      <ul>
-        {todos.map(({ id, title, descr }) => (
-          <li className={styles.listItem} key={id}>
-            <p className={styles.contact}>{id}:</p>
-            <p className={styles.contact}>{title}:</p>
-            <p className={styles.contact}>{descr}</p>
-            <input
-              className={styles.input}
-              // onChange={handleChange}
-              type="checkbox"
-              name="status"
-            />
-            {/* <button
-              className={styles.delBtn}
-              type="button"
-              onClick={() => onDeleteBtnClick(id)}
-            >
-              Delete
-            </button> */}
-          </li>
+    <table className={styles.table}>
+      <tbody>
+        <tr>
+          <th>id</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+        {todos.map(({ id, title, descr, status }) => (
+          <tr key={id} onClick={onTodoClick}>
+            <td>{id}</td>
+            <td>{title}</td>
+            <td>{descr}</td>
+            <td>
+              <input
+                type="checkbox"
+                data-todo-id={id}
+                name="status"
+                onChange={() => handleCheckboxChange(id, status)}
+                checked={status}
+              />
+            </td>
+          </tr>
         ))}
-      </ul>
-    </>
+      </tbody>
+    </table>
   );
 };
 export default TodoList;
