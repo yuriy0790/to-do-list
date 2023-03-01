@@ -32,13 +32,15 @@ const TodoList = () => {
 
   return (
     <table className={styles.table}>
-      <tbody>
+      <thead>
         <tr className={styles.listItem}>
           <th>id</th>
           <th>Title</th>
           <th>Description</th>
           <th>Status</th>
         </tr>
+      </thead>
+      <tbody>
         {todos.map(({ id, title, descr, status }) => (
           <tr key={id} onClick={onTodoClick} className={styles.listItem}>
             <td>{id}</td>
