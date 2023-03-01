@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './TodoList.module.css';
 
-import { deleteTodo, openModalTodo, setTodoStatus } from 'redux/todoSlice';
+import { openModalTodo, setTodoStatus } from 'redux/todoSlice';
 
 const TodoList = () => {
   const dispatch = useDispatch();

@@ -20,6 +20,7 @@ const todoSlice = createSlice({
     openModalTodo(state, { payload }) {
       state.fullTodoInfoModal = { ...payload };
     },
+
     closeModalTodo(state) {
       state.fullTodoInfoModal = null;
     },

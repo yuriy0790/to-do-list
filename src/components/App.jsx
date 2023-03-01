@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import AddTodoForm from './AddTodoForm/AddTodoForm';
 import TodoList from './TodoList/TodoList';
